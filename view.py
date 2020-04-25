@@ -96,9 +96,9 @@ def get_password():
                 return 'Value isdigit must be 0 or 1'
             if length in range(8, 25):
                 if isdigit == 1:
-                    return ''.join([random.choice(string.digits + string.ascii_lowercase) for _ in range(length)])
+                    return gen_password(string.digits + string.ascii_lowercase, length)
                 elif isdigit == 0:
-                    return ''.join([random.choice(string.ascii_lowercase) for _ in range(length)])
+                    return gen_password(string.ascii_lowercase, length)
             else:
                 return 'Password must be between 0 to 24'
         else:
@@ -158,6 +158,10 @@ def execute_query(query, param=tuple()):
     cur.execute(query, param)
     records = cur.fetchall()
     return records
+
+
+def gen_password(ptype, length):
+    return ''.join([random.choice(ptype) for _ in range(length)])
 
 
 app.run(debug=True)
