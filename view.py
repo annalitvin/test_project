@@ -96,7 +96,7 @@ def get_password():
                 return 'Value isdigit must be 0 or 1'
             if length in range(8, 25):
                 if isdigit == 1:
-                    return ''.join([random.choice(string.hexdigits) for _ in range(length)])
+                    return ''.join([random.choice(string.digits + string.ascii_lowercase) for _ in range(length)])
                 elif isdigit == 0:
                     return ''.join([random.choice(string.ascii_lowercase) for _ in range(length)])
             else:
